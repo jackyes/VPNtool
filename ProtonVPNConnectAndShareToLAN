@@ -1,0 +1,4 @@
+protonvpn c --r
+iptables -t nat -A POSTROUTING -o proton0 -j MASQUERADE
+iptables -A FORWARD -i enp0s4 -o proton0 -j ACCEPT #adjust with your interface!
+iptables -A FORWARD -i proton0 -o enp0s4 -m state --state RELATED,ESTABLISHED -j ACCEPT  #adjust with your interface!
