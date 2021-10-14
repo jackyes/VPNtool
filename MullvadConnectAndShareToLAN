@@ -1,0 +1,4 @@
+iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
+iptables -A FORWARD -i enp0s4 -o tun0 -j ACCEPT #adjust with your interface
+iptables -A FORWARD -i tun0 -o enp0s4 -m state --state RELATED,ESTABLISHED -j ACCEPT #adjust with your interface
+#mullvad split-tunnel pid add $(pgrep stubby)  #use if you want to leave stubby traffic outside of the tunnel
